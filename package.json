@@ -1,0 +1,25 @@
+{
+  "name": "forge-update-server",
+  "version": "1.0.0",
+  "description": "Update server for Electron apps hosted on GitHub",
+  "main": "index.js",
+  "author": "Samuel Attard",
+  "license": "MIT",
+  "scripts": {
+    "start": "node --harmony src/server",
+    "watch": "nodemon --watch src/server --exec \"yarn start\""
+  },
+  "dependencies": {
+    "apicache": "^0.7.3",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mysql": "^2.12.0",
+    "node-fetch": "^1.6.3",
+    "pify": "^2.3.0",
+    "redis": "^2.6.3",
+    "semver": "^5.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
