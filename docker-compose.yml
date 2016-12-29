@@ -15,3 +15,6 @@ db:
     MYSQL_USER: "forge_user"
     MYSQL_PASSWORD: "forge_password"
     MYSQL_ROOT_PASSWORD: "my_secret_password"
+    MYSQL_DATABASE: "forge-db"
+  volumes:
+   - ./db:/docker-entrypoint-initdb.d
