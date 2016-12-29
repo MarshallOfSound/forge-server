@@ -56,7 +56,7 @@ app.post('/signup/choose/submit', (req, res) => {
       res.redirect('/signup/success');
     });
   } else {
-    res.send('/');
+    res.redirect('/');
   }
 });
 
