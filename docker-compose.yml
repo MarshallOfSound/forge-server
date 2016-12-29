@@ -1,0 +1,13 @@
+web:
+  build: .
+  ports:
+    - "3030:3000"
+  links:
+    - "cache:redis"
+    - db
+
+cache:
+  image: redis
+
+db:
+  image: mysql
