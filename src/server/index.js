@@ -1,6 +1,7 @@
 const apicache = require('apicache');
 const bodyparser = require('body-parser');
 const express = require('express');
+const path = require('path');
 
 const updateRouter = require('./update');
 const newRedisClient = require('./util/redis');
@@ -16,6 +17,8 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   app.use('/update', updateRouter);
 }
+
+app.use('/', express.static(path.resolve(__dirname, '../public')));
 
 app.listen(3000, () => {
   console.log('Forge Update Server Launched');
