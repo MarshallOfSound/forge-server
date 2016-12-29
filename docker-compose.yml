@@ -11,3 +11,7 @@ cache:
 
 db:
   image: mysql
+  environment:
+    MYSQL_USER: "forge_user"
+    MYSQL_PASSWORD: "forge_password"
+    MYSQL_ROOT_PASSWORD: "my_secret_password"

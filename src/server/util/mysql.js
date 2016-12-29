@@ -3,8 +3,8 @@ const mysql = require('mysql');
 const pool = mysql.createPool({
   connectionLimit: 10,
   host: process.env.DB_PORT_3306_TCP_ADDR || 'localhost',
-  user: 'root',
-  password: process.env.DB_ENV_MYSQL_ROOT_PASSWORD || '',
+  user: process.env.DB_ENV_MYSQL_USER || 'root',
+  password: process.env.DB_ENV_MYSQL_PASSWORD || '',
   database: process.env.DB_ENV_MYSQL_DATABASE || 'forge',
   port: process.env.DB_PORT_3306_TCP_PORT || 3306,
 });
