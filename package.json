@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node --harmony src/server",
+    "start-prod": "NODE_ENV=production node --harmony src/server",
     "watch": "nodemon --watch src/server --exec \"yarn start\""
   },
   "dependencies": {
