@@ -5,6 +5,8 @@ web:
   links:
     - "cache:redis"
     - db
+  volumes:
+    - ./src:/src
 
 cache:
   image: redis
