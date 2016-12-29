@@ -30,6 +30,8 @@ const getLatestRelease = cache(async (repo) => {
     let tagB = releaseB.tag_name;
     if (tagB.substr(0, 1) === 'v') tagB = tagB.substr(1);
     releaseB._version = tagB;
+    if (!semver.valid(tagA)) return 1;
+    if (!semver.valid(tagB)) return -1;
     return (semver.gt(tagB, tagA) ? 1 : -1);
   });
   return releases[0];
@@ -63,7 +65,7 @@ const getSquirrelMacAsset = (release) => {
 updateAPI.get('/darwin/:currentVersion', async (req, res) => {
   const release = await getLatestRelease(req.repo);
   const asset = getSquirrelMacAsset(release);
-  if (semver.gt(release._version, req.params.currentVersion) && asset) {
+  if (semver.valid(req.params.currentVersion) && semver.valid(release._version) && semver.gt(release._version, req.params.currentVersion) && asset) {
     res.status(200).json({
       url: asset.browser_download_url,
       name: release.name,

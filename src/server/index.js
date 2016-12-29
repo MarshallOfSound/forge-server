@@ -27,3 +27,10 @@ app.listen(3000, () => {
 process.on('unhandledRejection', (err) => {
   console.error('WOOPS!!!!\n\n', err.message, '\n', err.stack);
 });
+
+app.use((err, req, res, next) => {
+  res.status(500).json({
+    error: true,
+    message: 'Unknown error occurred',
+  });
+});
