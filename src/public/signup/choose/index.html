@@ -37,57 +37,33 @@
     </header>
     <div class='subtron'>
       <div class='container-narrow'>
-        <h1>Electron Forge</h1>
+        <h1>Electron Forge Update Server</h1>
         <p class="lead mb-3">
-          Building Electron apps has never been easier. Go from nothing to deployed in minutes.
+          If you publish your app to GitHub with electron-forge, you can use this update server inside your application!
         </p>
       </div>
     </div>
-    <section class='page-section'>
-      <div class="container-narrow">
-        <div class="row text-center text-small">
-          <div class="col-xs-12 col-sm-4">
-            <span class="home-illu mega-octicon octicon-git-compare vertical-middle" aria-hidden="true"></span>
-            <h3 class="mb-2 mt-0">Open Source</h3>
-            <p>Electron Forge is <strong>completely Open Source</strong> from it's building logic to it's update server.</p>
-          </div>
-          <div class="col-xs-12 col-sm-4">
-            <span class="home-illu mega-octicon octicon-globe vertical-middle" aria-hidden="true"></span>
-            <h3 class="mb-2 mt-0">Community Driven</h3>
-            <p>Electron Forge is powered by <strong>community</strong> packages and an active group of contributors. We use tools that already exist to make your lives easier.</p>
-          </div>
-          <div class="col-xs-12 col-sm-4">
-            <span class="home-illu mega-octicon octicon-tasklist vertical-middle" aria-hidden="true"></span>
-            <h3 class="mb-2 mt-0">Simple</h3>
-            <p>You don't need to know anything up front before using Electron Forge, with a <strong>single command</strong> you can get started today.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="page-section page-section-spacious bg-shade" id="get-started">
+    <section class="page-section page-section-spacious" id="get-started">
       <div class="container-narrow text-center">
-        <h1>Get started</h1>
+        <h1>Sign Up</h1>
         <p class="lead">
-          Getting started with Electron Forge is as super easy.  You'll be deploying your app in no time.
+          Enter the repository details below.
         </p>
         <hr>
-        <h3 class="mb-3">Just install Electron Forge globally to get started:</h3>
-        <!--<p>A minimal Electron app with helpful notations.</p>-->
-        <figure class="highlight highlight-dark text-left my-4">
-          <pre>
-    <code><span class="c1"># Install Electron Forge</span>
-    $ npm install -g electron-forge
-
-    <span class="c1"># Initialize a new project</span>
-    $ electron-forge init my-new-project
-
-    <span class="c1"># Enter the directory and launch your app</span>
-    $ cd my-new-project
-    $ electron-forge start</code></pre>
-        </figure>
-        <h3>Or dive deeper and read the <a href="/docs/">documentation</a>.</h3>
-        <!--<h3 class="pt-4">Need Help?</h3>
-        <p>Ask questions in the <a href="https://discuss.atom.io/c/electron">Discuss</a> forum or our <a href="http://atom-slack.herokuapp.com/">Slack</a> channel. Follow <a href="https://twitter.com/ElectronJS">@ElectronJS</a> on Twitter for important announcements. Need to privately reach out? Email <a href="mailto:electron@github.com">electron@github.com</a>.</p>-->
+        <form method="POST" action="/signup/choose/submit">
+          <input type="text" name="owner" placeholder="Owner (your username normally)" required />
+          <input type="text" name="name" placeholder="Repository name" required />
+          <input id="signupID" type="text" name="signupID" style="display: none" required />
+          <input type="submit" value="Register" />
+        </form>
+        <script>
+        var match = /signup_id=([0-9]+)/.exec(window.location.href);
+        if (match) {
+          document.getElementById('signupID').value = match[1];
+        } else {
+          window.location = '/signup';
+        }
+        </script>
       </div>
     </section>
     <footer class="footer">
@@ -104,38 +80,5 @@
         </span>
       </div>
     </footer>
-    <script>
-      var anchorForId = function (id) {
-        var anchor = document.createElement("a");
-        anchor.className = "header-link";
-        anchor.href      = "#" + id;
-        anchor.innerHTML = "<span class='octicon octicon-link'></span>";
-        anchor.title = "Permalink";
-        return anchor;
-      };
-      
-      var linkifyAnchors = function (level, containingElement) {
-        var headers = containingElement.getElementsByTagName("h" + level);
-        for (var h = 0; h < headers.length; h++) {
-          var header = headers[h];
-      
-          if (typeof header.id !== "undefined" && header.id !== "") {
-            header.appendChild(anchorForId(header.id));
-          }
-        }
-      };
-      
-      document.onreadystatechange = function () {
-        if (this.readyState === "complete") {
-          var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("news")[0];
-          if (!contentBlock) {
-            return;
-          }
-          for (var level = 1; level <= 6; level++) {
-            linkifyAnchors(level, contentBlock);
-          }
-        }
-      };
-    </script>
   </body>
 </html>
